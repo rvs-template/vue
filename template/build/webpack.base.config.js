@@ -33,7 +33,7 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src'),
+      '@': resolve('src')
     }
   },
   module: {
@@ -54,7 +54,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: 'img/[name].[hash:7].[ext]&outputPath=static/'
+          name: 'img/[name].[hash:7].[ext]&outputPath=public/'
         }
       },
       {
@@ -62,7 +62,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: 'media/[name].[hash:7].[ext]&outputPath=static/'
+          name: 'media/[name].[hash:7].[ext]&outputPath=public/'
         }
       },
       {
@@ -70,7 +70,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: 'fonts/[name].[hash:7].[ext]&outputPath=static/'
+          name: 'fonts/[name].[hash:7].[ext]&outputPath=public/'
         }
       }
     ]

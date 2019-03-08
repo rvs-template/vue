@@ -4,7 +4,7 @@ const config = require('../config')
 const utils = require('./utils')
 const merge = require('webpack-merge')
 const path = require('path')
-const baseWebpackConfig = require('./webpack.base.conf')
+const baseWebpackConfig = require('./webpack.base.config')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
@@ -25,8 +25,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     clientLogLevel: 'warning',
     historyApiFallback: {
       rewrites: [
-        { from: /.*/, to: path.posix.join(config.dev.assetsPublicPath, 'index.html') },
-      ],
+        { from: /.*/, to: path.posix.join(config.dev.assetsPublicPath, 'index.html') }
+      ]
     },
     hot: true,
     contentBase: false, // since we use CopyWebpackPlugin.
@@ -41,7 +41,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     proxy: config.dev.proxyTable,
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
-      poll: config.dev.poll,
+      poll: config.dev.poll
     }
   },
   plugins: [
@@ -60,7 +60,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     // copy custom static assets
     new CopyWebpackPlugin([
       {
-        from: path.resolve(__dirname, '../static'),
+        from: path.resolve(__dirname, '../public'),
         to: config.dev.assetsSubDirectory,
         ignore: ['.*']
       }
@@ -82,7 +82,7 @@ module.exports = new Promise((resolve, reject) => {
       // Add FriendlyErrorsPlugin
       devWebpackConfig.plugins.push(new FriendlyErrorsPlugin({
         compilationSuccessInfo: {
-          messages: [`Your application is running here: http://${devWebpackConfig.devServer.host}:${port}`],
+          messages: [`Your application is running here: http://${devWebpackConfig.devServer.host}:${port}`]
         },
         onErrors: config.dev.notifyOnErrors
           ? () => {
@@ -95,7 +95,7 @@ module.exports = new Promise((resolve, reject) => {
               const filename = error.file && error.file.split('!').pop()
 
               notifier.notify({
-                title: packageConfig.name,
+                title: '',
                 message: severity + ': ' + error.name,
                 subtitle: filename || '',
                 icon: path.join(__dirname, 'logo.png')
